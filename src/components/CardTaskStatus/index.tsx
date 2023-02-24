@@ -1,12 +1,12 @@
-import { View, Text, } from 'react-native'
+import { View, Text, ColorValue, } from 'react-native'
 import colors from '../../theme/colors'
 import { CircularProgressBar, CircularProgressBarProps } from '../CircularProgressBar'
 import { styles } from './styles'
 
-interface CardTaskStatus extends CircularProgressBarProps {
+export interface CardTaskStatus extends CircularProgressBarProps {
     title: string
     subtitle: string,
-    backgroundColor: string
+    backgroundColor?: ColorValue
 }
 
 export function CardTaskStatus({

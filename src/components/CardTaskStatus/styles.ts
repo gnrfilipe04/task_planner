@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         padding: 15,
-        borderRadius: 20
+        borderRadius: 20,
     },
     containerInfo: {
         paddingLeft: 2
