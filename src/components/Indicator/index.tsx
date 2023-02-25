@@ -1,24 +1,53 @@
-import { View, Pressable, Text } from 'react-native'
+import { useEffect } from 'react'
+import { View, Pressable, Text, PressableProps } from 'react-native'
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated'
 import { styles } from './styles'
 
-interface IndicatorProps {
+export interface IndicatorProps {
     icon: JSX.Element,
     title: string,
-    subtitle: string
+    subtitle: string,
+    delay?: number,
 }
 
 export function Indicator({
     icon,
     subtitle,
-    title
+    title,
+    delay = 0,
 }: IndicatorProps){
+
+    const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
+
+    const positioX = useSharedValue(-300)
+
+    const animatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [
+                { translateX: positioX.value }
+            ]
+        }
+    })
+
+    const animation = () => {
+        positioX.value = withDelay(delay, withTiming(0, {
+            duration: 500,
+            easing: Easing.linear
+        }))
+    }
+
+
+    useEffect(() => {
+        animation()
+    })
+
     return (
-        <Pressable style={styles.container}>
+        <AnimatedPressable style={[animatedStyle, styles.container]}>
             {icon}
             <View style={styles.containerText}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.subtitle}>{subtitle}</Text>
             </View>
-        </Pressable>
+        </AnimatedPressable>
     )
 }

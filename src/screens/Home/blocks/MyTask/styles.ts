@@ -45,7 +45,12 @@ export const styles = StyleSheet.create({
         borderRadius: 25,
         backgroundColor: colors.blue,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        shadowColor: colors.blue,
+        shadowOffset: { width: 0, height: 2},
+        shadowRadius: 10,
+        elevation: 10,
+
     },
     containerTitle: {
         flexDirection: 'row',
