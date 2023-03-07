@@ -5,6 +5,7 @@ import { styles } from "./styles";
 import { FlatGrid } from "react-native-super-grid";
 import { Header } from "./blocks/Header";
 import { MyTask } from "./blocks/MyTask";
+import Animated, { interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 
 export function Home(){
 
@@ -45,34 +46,59 @@ export function Home(){
         
     ]
 
+    const headerScale = useSharedValue(1)
+    const headerOpacity = useSharedValue(1)
+
+    const scrollHandler = useAnimatedScrollHandler((event) => {
+        headerScale.value = 1 - event.contentOffset.y / 200
+        headerOpacity.value = 1 - event.contentOffset.y / 100
+    });
+
+    const headerAnimatedStyle = useAnimatedStyle(() => {
+        return {
+            opacity: headerOpacity.value,
+            transform: [
+                { scale: headerScale.value }
+            ]
+        }
+    })
+
     return (
-        <FlatGrid
-            maxItemsPerRow={2}
+        <Animated.ScrollView
+            onScroll={scrollHandler}
+            scrollEventThrottle={16}
             showsVerticalScrollIndicator={false}
-            data={cards}
-            contentContainerStyle={{ paddingHorizontal: 5, }}
-            ListHeaderComponent={
-                <View style={styles.container}>
+        >
+            <View style={styles.container}>
 
-                    <Header />
+                <Header style={headerAnimatedStyle}/>
+                
+                <MyTask />
 
-                    <MyTask />
+            </View>
 
-                </View>}
-            renderItem={({ item }) => {
-                return (
-                    <CardTaskStatus
-                        backgroundColor={item.backgroundColor}
-                        key={item.title} 
-                        title={item.title}
-                        subtitle={item.subtitle}
-                        percentage={item.percentage}
-                        delay={item.delay}
-                        delayAnimation={item.delayAnimation}
-                    /> 
-                )
-            }}
-        />
+            <FlatGrid
+                maxItemsPerRow={2}
+                showsVerticalScrollIndicator={false}
+                data={cards}
+                scrollEnabled={false}
+                contentContainerStyle={{ paddingHorizontal: 5, }}
+                renderItem={({ item }) => {
+                    return (
+                        <CardTaskStatus
+                            backgroundColor={item.backgroundColor}
+                            key={item.title} 
+                            title={item.title}
+                            subtitle={item.subtitle}
+                            percentage={item.percentage}
+                            delay={item.delay}
+                            delayAnimation={item.delayAnimation}
+                        /> 
+                    )
+                }}
+            />
+        
+        </Animated.ScrollView>
     )
 }
 

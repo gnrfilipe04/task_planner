@@ -5,8 +5,7 @@ export const styles = StyleSheet.create({
     profileContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 40
-
+        marginBottom: 40,
     },
     profile: {
         width: 100, 

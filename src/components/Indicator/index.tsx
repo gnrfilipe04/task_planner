@@ -36,7 +36,6 @@ export function Indicator({
         }))
     }
 
-
     useEffect(() => {
         animation()
     })
