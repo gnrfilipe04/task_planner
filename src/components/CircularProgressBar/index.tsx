@@ -79,7 +79,7 @@ export function CircularProgressBar({
     }, [])
 
     return (
-        <AnimatedView>
+        <AnimatedView pointerEvents={'none'}>
             <AnimatedSvg 
                 width={radius * 2} 
                 height={radius * 2} 

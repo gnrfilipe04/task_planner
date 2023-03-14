@@ -5,7 +5,7 @@ import { styles } from "./styles";
 import { FlatGrid } from "react-native-super-grid";
 import { Header } from "./blocks/Header";
 import { MyTask } from "./blocks/MyTask";
-import Animated, { interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import Animated, { Extrapolate, interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 
 export function Home(){
 
@@ -27,6 +27,7 @@ export function Home(){
             delay: 500,
             delayAnimation: 1000
         },
+
         {
             title: "Lazer",
             subtitle: "3 tarefas para hoje",
@@ -50,32 +51,49 @@ export function Home(){
     const headerOpacity = useSharedValue(1)
 
     const scrollHandler = useAnimatedScrollHandler((event) => {
-        headerScale.value = 1 - event.contentOffset.y / 200
-        headerOpacity.value = 1 - event.contentOffset.y / 100
+        headerScale.value = 1 - event.contentOffset.y / 100
+        headerOpacity.value = 1 - event.contentOffset.y / 50
+        
     });
 
     const headerAnimatedStyle = useAnimatedStyle(() => {
         return {
             opacity: headerOpacity.value,
+            height: interpolate(headerOpacity.value, [1, 0], [100, 0], {
+                extrapolateLeft: Extrapolate.CLAMP,
+                extrapolateRight: Extrapolate.CLAMP
+            }),
             transform: [
                 { scale: headerScale.value }
             ]
         }
     })
 
+    const containerHeaderAnimatedStyle = useAnimatedStyle(() => {
+        return {
+            paddingTop: interpolate(headerOpacity.value, [1, 0], [50, 50], {
+                extrapolateLeft: Extrapolate.CLAMP,
+                extrapolateRight: Extrapolate.CLAMP
+            }),
+        }
+    })
+
     return (
         <Animated.ScrollView
+            style={{ backgroundColor: colors.white }}
             onScroll={scrollHandler}
+            stickyHeaderIndices={[1]}
             scrollEventThrottle={16}
             showsVerticalScrollIndicator={false}
-        >
-            <View style={styles.container}>
+        >   
+            <View style={{ height: 80 }}/>
+            <Animated.View style={[styles.container, containerHeaderAnimatedStyle]}>
 
                 <Header style={headerAnimatedStyle}/>
-                
+
                 <MyTask />
 
-            </View>
+            </Animated.View>
 
             <FlatGrid
                 maxItemsPerRow={2}

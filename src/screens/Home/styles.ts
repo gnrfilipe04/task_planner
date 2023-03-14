@@ -3,11 +3,9 @@ import colors from "../../theme/colors";
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: colors.white,
-        paddingTop: 50
+        paddingTop: 20,
+        zIndex: 999
     },
     containerTaskCard: {
         flexDirection: 'row',
