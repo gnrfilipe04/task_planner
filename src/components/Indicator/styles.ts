@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
+
 import colors from '../../theme/colors'
 
 export const styles = StyleSheet.create({
@@ -8,11 +10,11 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontSize: 18,
+        fontSize: RFValue(18),
         color: colors.black
     },
     subtitle: {
-        fontSize: 14,
+        fontSize: RFValue(14),
         color: colors.black,
         opacity: 0.4,
     },

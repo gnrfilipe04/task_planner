@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { RFValue } from 'react-native-responsive-fontsize'
 import colors from "../../../../theme/colors";
 
 export const styles = StyleSheet.create({
@@ -14,14 +15,14 @@ export const styles = StyleSheet.create({
         marginBottom: 5
     },
     name: {
-        fontSize: 18,
+        fontSize: RFValue(18),
         textAlign: 'center',
         color: colors.black,
         fontWeight: '700',
         paddingHorizontal: 10,
     },
     professionalName: {
-        fontSize: 14,
+        fontSize: RFValue(14),
         textAlign: 'center',
         color: colors.black,
         opacity: 0.5

@@ -80,7 +80,7 @@ export function Home(){
 
     return (
         <Animated.ScrollView
-            style={{ backgroundColor: colors.white }}
+            style={{ backgroundColor: colors.white}}
             onScroll={scrollHandler}
             stickyHeaderIndices={[1]}
             scrollEventThrottle={16}
@@ -100,7 +100,7 @@ export function Home(){
                 showsVerticalScrollIndicator={false}
                 data={cards}
                 scrollEnabled={false}
-                contentContainerStyle={{ paddingHorizontal: 5, }}
+                contentContainerStyle={{ paddingHorizontal: 8}}
                 renderItem={({ item }) => {
                     return (
                         <CardTaskStatus

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { View, Pressable, Text, PressableProps } from 'react-native'
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated'
+
 import { styles } from './styles'
 
 export interface IndicatorProps {

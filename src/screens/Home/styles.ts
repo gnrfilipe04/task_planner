@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import colors from "../../theme/colors";
+import { RFValue } from 'react-native-responsive-fontsize'
 
 export const styles = StyleSheet.create({
     container: {
@@ -28,11 +29,11 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20
     },
     title: {
-        fontSize: 32,
+        fontSize: RFValue(32),
         color: colors.black
     },
     subtitle: {
-        fontSize: 16,
+        fontSize: RFValue(16),
         color: colors.black,
         opacity: 0.4,
     },

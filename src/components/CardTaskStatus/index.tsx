@@ -1,8 +1,9 @@
+import { useEffect } from 'react'
 import { View, Text, ColorValue, } from 'react-native'
 import { CircularProgressBar, CircularProgressBarProps } from '../CircularProgressBar'
 import Animated, { Easing, interpolate, useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { styles } from './styles'
-import { useEffect } from 'react'
 
 export interface CardTaskStatus extends CircularProgressBarProps {
     title: string
@@ -43,7 +44,7 @@ export function CardTaskStatus({
 
     return (
         <Animated.View style={[cardStyle, styles.container, { backgroundColor }]}>
-            <CircularProgressBar radius={40} color={'#fffaff'} strokeWidth={7} {...props}/>
+            <CircularProgressBar radius={RFValue(40)} color={'#fffaff'} strokeWidth={7} {...props}/>
 
             <View style={styles.containerInfo}>
                 <Text style={styles.title}>{title}</Text>

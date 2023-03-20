@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { ColorValue, StyleSheet, TextInput, View, TextInputProps } from 'react-native';
 import Svg, { Circle, G, } from 'react-native-svg';
 import Animated, { AnimateProps, Easing, useAnimatedProps, useSharedValue, withDelay, withTiming } from 'react-native-reanimated'
+import { RFValue } from 'react-native-responsive-fontsize'
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle)
 const AnimatedSvg = Animated.createAnimatedComponent(Svg)

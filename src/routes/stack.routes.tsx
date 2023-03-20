@@ -6,6 +6,7 @@ import { Schedule } from '../screens/Schedule'
 const { Navigator, Screen, } = createNativeStackNavigator()
 
 export function StackRoutes () {
+
   return (
     <Navigator
       initialRouteName='home'
@@ -21,6 +22,7 @@ export function StackRoutes () {
         name='schedule'
         component={Schedule}
       />
+
     </Navigator>
   )
 }
